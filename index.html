@@ -139,7 +139,26 @@
     font-weight: 700;
     color: #f4f7fd;
   }
-  h1 .title-main { display: block; }
+  
+  /* Выравнивание по верхнему краю */
+  h1 .title-main {
+    display: flex;
+    align-items: flex-start; 
+    flex-wrap: wrap;
+    gap: 0 clamp(8px, 1.5vw, 16px);
+  }
+
+  /* Слово ТРЕЙЛ */
+  .title-tag {
+    font-size: clamp(12px, 1.9vw, 16px);
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    line-height: 1;
+    /* Сдвиг вниз, чтобы верхушка "ТРЕЙЛ" встала на линию буквы "и" */
+    margin-top: 0.55em; 
+  }
 
   .h1-sub {
     display: block;
@@ -153,7 +172,7 @@
 
   /* ===== ФОТО 1 (наверху) ===== */
   .hero-photo {
-    position: relative; /* Для позиционирования подписи */
+    position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 12px;
@@ -173,7 +192,6 @@
     object-position: center 25%;
   }
 
-  /* Подпись на первом фото */
   .photo-caption {
     position: absolute;
     bottom: 0;
@@ -243,7 +261,6 @@
     z-index: 2;
   }
 
-  /* ФОТО 2 — внутри блока регистрации, сверху */
   .reg-photo {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -499,7 +516,10 @@
           </p>
 
           <h1>
-            <span class="title-main">Заброшки</span>
+            <span class="title-main">
+              <span class="title-name">Заброшки</span>
+              <span class="title-tag">трейл</span>
+            </span>
             <span class="h1-sub">Зима 2026</span>
           </h1>
 
@@ -519,15 +539,13 @@
           </ul>
         </header>
 
-        <!-- ===== РЕГИСТРАЦИЯ (с фото сверху) ===== -->
+        <!-- ===== РЕГИСТРАЦИЯ ===== -->
         <section class="reg" aria-labelledby="reg-label">
           
-          <!-- ФОТО 2 -->
           <div class="reg-photo">
             <img src="photo2.jpg" alt="Участники смотрят в окно автобуса">
           </div>
 
-          <!-- Текст и кнопка -->
           <div class="reg-content">
             <div class="reg-top">
               <p class="reg-line">
@@ -605,14 +623,21 @@
 (function () {
   "use strict";
 
+  /* =========================================================
+     НАСТРОЙКИ — единственное место, которое нужно править
+     ========================================================= */
   var CONFIG = {
     // Ваша Google Форма (без ?embedded=true — добавится автоматически)
     formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdWM_XET4wv5d0aiAanleUDUS8YyCIkNHvLExuOo_Wyl2wszw/viewform",
-    vk:  "#",
-    tg:  "#",
-    max: "#"
+    
+    // Ссылки на соцсети и контакты
+    vk:  "https://vk.ru/trail_zabroshki",
+    tg:  "#", // Ссылка на Telegram (пока заглушка)
+    max: "https://web.max.ru/-72418159081581"
   };
+  /* ========================================================= */
 
+  // Автоматическая подстановка ссылок в футер
   document.querySelectorAll("[data-link]").forEach(function (el) {
     var key = el.getAttribute("data-link");
     if (CONFIG[key] && CONFIG[key] !== "#") {
@@ -663,6 +688,7 @@
     }
   });
 
+  // Модалка с формой
   var formModal  = document.getElementById("formModal");
   var formBtn    = document.getElementById("regBtn");
   var formFrame  = document.getElementById("formFrame");
@@ -687,6 +713,7 @@
     });
   }
 
+  // Модалка с политикой
   var privacyBtn   = document.getElementById("privacyBtn");
   var privacyModal = document.getElementById("privacyModal");
 
