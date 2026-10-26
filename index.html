@@ -147,20 +147,19 @@
     gap: 0 clamp(8px, 1.2vw, 12px);
   }
 
-  /* Оформляем ТРЕЙЛ как стильный бейдж/тег в цвете --muted */
   .title-tag {
     display: inline-block;
     font-size: clamp(10px, 1.4vw, 12px);
     font-weight: 700;
     letter-spacing: .2em;
     text-transform: uppercase;
-    color: var(--muted); /* Изменено на цвет верхних надписей */
-    border: 1px solid var(--muted); /* Рамка в тот же цвет */
+    color: var(--muted);
+    border: 1px solid var(--muted);
     border-radius: 6px;
     padding: 3px 6px 2px 8px;
     line-height: 1.2;
     margin-top: 0.7em;
-    background: rgba(255, 255, 255, 0.03); /* Легкий нейтральный фон */
+    background: rgba(255, 255, 255, 0.03);
   }
 
   .h1-sub {
@@ -195,6 +194,7 @@
     object-position: center 25%;
   }
 
+  /* Общий стиль для подписей на фото */
   .photo-caption {
     position: absolute;
     bottom: 0;
@@ -264,7 +264,9 @@
     z-index: 2;
   }
 
+  /* ДОБАВЛЕНО position: relative, чтобы подпись позиционировалась внутри этого блока */
   .reg-photo {
+    position: relative; 
     width: 100%;
     aspect-ratio: 16 / 9;
     background: #0a0e15;
@@ -547,6 +549,8 @@
           
           <div class="reg-photo">
             <img src="photo2.jpg" alt="Участники смотрят в окно автобуса">
+            <!-- ДОБАВЛЕНА ПОДПИСЬ -->
+            <span class="photo-caption">Трансфер</span>
           </div>
 
           <div class="reg-content">
