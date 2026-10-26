@@ -467,121 +467,26 @@
   .modal-body p:last-child { margin-bottom: 0; }
   .modal-body strong { color: var(--text); }
 
-  /* =========================================================
-     СТИЛИ ДЛЯ КАСТОМНОЙ ФОРМЫ
-     ========================================================= */
-  .custom-form {
-    padding: clamp(16px, 3vw, 24px);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    overflow-y: auto;
+  /* ===== МОДАЛКА С ФОРМОЙ ===== */
+  #formModal .modal-dialog {
+    max-width: 760px;
+    max-height: min(90vh, 1000px);
+    height: min(90vh, 1000px);
   }
 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    text-align: left;
+  .form-frame-wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    background: #ffffff; /* Белый фон под форму */
+    position: relative;
   }
 
-  .form-group label {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-    letter-spacing: .05em;
-  }
-
-  .form-group input[type="text"],
-  .form-group input[type="tel"] {
+  .form-frame {
+    display: block;
     width: 100%;
-    padding: 12px 14px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    color: var(--text);
-    font: inherit;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .form-group input:focus {
-    border-color: var(--accent);
-    background: rgba(132, 180, 255, 0.05);
-  }
-
-  .form-group input::placeholder {
-    color: #5f6a7d;
-  }
-
-  .radio-group {
-    display: flex;
-    gap: 16px;
-    padding-top: 4px;
-  }
-
-  .radio-label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    color: var(--text);
-    cursor: pointer;
-  }
-
-  .radio-label input {
-    accent-color: var(--accent);
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-  }
-
-  .submit-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 14px;
-    margin-top: 8px;
+    height: 100%;
     border: 0;
-    border-radius: 10px;
-    background: linear-gradient(180deg, #aecbff 0%, #74a8ff 100%);
-    color: #061019;
-    font: inherit;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: filter .15s ease;
-  }
-
-  .submit-btn:hover { filter: brightness(1.07); }
-  .submit-btn:active { transform: translateY(1px); }
-
-  /* Экран успеха */
-  .success-screen {
-    display: none;
-    padding: 40px 24px;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-  .success-screen.is-visible { display: flex; }
-  .success-icon {
-    font-size: 48px;
-    line-height: 1;
-  }
-  .success-screen h3 {
-    margin: 0;
-    font-size: 20px;
-    color: var(--text);
-  }
-  .success-screen p {
-    margin: 0;
-    font-size: 14px;
-    color: var(--muted);
-    max-width: 30ch;
+    background: #ffffff;
   }
 
   body.modal-open { overflow: hidden; }
@@ -660,7 +565,7 @@
     </div>
   </footer>
 
-  <!-- ===== МОДАЛКА: ФОРМА РЕГИСТРАЦИИ (КАСТОМНАЯ) ===== -->
+  <!-- ===== МОДАЛКА: ФОРМА РЕГИСТРАЦИИ (ВСТРОЕННАЯ GOOGLE) ===== -->
   <div class="modal" id="formModal" role="dialog" aria-modal="true" aria-labelledby="formTitle">
     <div class="modal-backdrop" data-close></div>
     <div class="modal-dialog">
@@ -668,60 +573,17 @@
         <h2 class="modal-title" id="formTitle">Регистрация</h2>
         <button type="button" class="modal-close" aria-label="Закрыть" data-close>&times;</button>
       </div>
-      
-      <!-- САМА ФОРМА (ИСПРАВЛЕНА) -->
-      <form 
-        class="custom-form" 
-        id="regForm" 
-        action="https://docs.google.com/forms/d/e/1FAIpQLSdWM_XET4wv5d0aiAanleUDUS8YyCIkNHvLExuOo_Wyl2wszw/formResponse" 
-        method="POST" 
-        target="hidden_iframe" 
-        onsubmit="submitted=true;"
-      >
-        <!-- Скрытые системные поля Google Forms -->
-        <input type="hidden" name="fvv" value="1">
-        <input type="hidden" name="pageHistory" value="0">
-
-        <div class="form-group">
-          <label for="entryName">Фамилия, имя</label>
-          <input type="text" id="entryName" name="entry.889027088" placeholder="Иван Иванов" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="entryPhone">Телефон</label>
-          <input type="tel" id="entryPhone" name="entry.1848259474" placeholder="+7 (999) 000-00-00" required>
-        </div>
-
-        <div class="form-group">
-          <label>Нужен ли трансфер?</label>
-          <div class="radio-group">
-            <label class="radio-label">
-              <!-- Значение должно строго совпадать с вариантом в Google -->
-              <input type="radio" name="entry.462479111" value="Да" required> Да, нужен
-            </label>
-            <label class="radio-label">
-              <!-- Значение должно строго совпадать с вариантом в Google -->
-              <input type="radio" name="entry.462479111" value="Нет"> Нет, я сам(а)
-            </label>
-          </div>
-        </div>
-
-        <button type="submit" class="submit-btn">Отправить заявку</button>
-      </form>
-
-      <!-- ЭКРАН УСПЕХА -->
-      <div class="success-screen" id="successScreen">
-        <div class="success-icon">❄️</div>
-        <h3>Вы зарегистрированы!</h3>
-        <p>Мы свяжемся с вами ближайшее время для подтверждения места.</p>
-        <button type="button" class="btn" data-close style="margin-top: 10px;">Отлично</button>
+      <div class="form-frame-wrap">
+        <iframe 
+          class="form-frame" 
+          id="formFrame" 
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdWM_XET4wv5d0aiAanleUDUS8YyCIkNHvLExuOo_Wyl2wszw/viewform?embedded=true" 
+          title="Форма регистрации" 
+          loading="lazy">
+        </iframe>
       </div>
-
     </div>
   </div>
-
-  <!-- Скрытый iframe, чтобы страница не перезагружалась -->
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
   <!-- ===== МОДАЛКА: ПОЛИТИКА ===== -->
   <div class="modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
@@ -741,7 +603,7 @@
         <h3>4. Кому передаём</h3>
         <p>Никому. Данные не передаются третьим лицам, не публикуются и не используются для рассылок, не связанных с мероприятием.</p>
         <h3>5. Где хранятся</h3>
-        <p>В защищённой Google Таблице, связанной с формой регистрации. Доступ — только у Организатора.</p>
+        <p>В защищённой Google Форме и связанной с ней Google Таблице. Доступ — только у Организатора.</p>
         <h3>6. Сколько храним</h3>
         <p>До завершения мероприятия и 3 месяца после — затем удаляем.</p>
         <h3>7. Права участника</h3>
@@ -812,34 +674,17 @@
     }
   });
 
-  // Логика для кастомной формы
+  // Открытие модалки с формой
   var formModal = document.getElementById("formModal");
   var formBtn = document.getElementById("regBtn");
-  var formElement = document.getElementById("regForm");
-  var successScreen = document.getElementById("successScreen");
-  var submitted = false;
 
   if (formBtn) {
     formBtn.addEventListener("click", function () {
-      formElement.style.display = "flex";
-      successScreen.classList.remove("is-visible");
-      formElement.reset();
-      submitted = false;
-      
       openModal(formModal);
     });
   }
 
-  var hiddenIframe = document.getElementById("hidden_iframe");
-  if (hiddenIframe) {
-    hiddenIframe.addEventListener("load", function () {
-      if (submitted) {
-        formElement.style.display = "none";
-        successScreen.classList.add("is-visible");
-      }
-    });
-  }
-
+  // Открытие модалки с политикой
   var privacyBtn   = document.getElementById("privacyBtn");
   var privacyModal = document.getElementById("privacyModal");
 
