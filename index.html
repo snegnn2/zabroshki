@@ -618,9 +618,12 @@
 (function () {
   "use strict";
 
+  /* =========================================================
+     НАСТРОЙКИ — ссылки на соцсети
+     ========================================================= */
   var CONFIG = {
     vk:  "https://vk.ru/trail_zabroshki",
-    tg:  "#",
+    tg:  "#", // Сюда вставите ссылку на Telegram, когда будет готова
     max: "https://web.max.ru/-72418159081581"
   };
 
@@ -674,10 +677,9 @@
     }
   });
 
-  // Открытие модалки с формой
+  // Открытие модалки с Google Формой
   var formModal = document.getElementById("formModal");
   var formBtn = document.getElementById("regBtn");
-
   if (formBtn) {
     formBtn.addEventListener("click", function () {
       openModal(formModal);
@@ -687,7 +689,6 @@
   // Открытие модалки с политикой
   var privacyBtn   = document.getElementById("privacyBtn");
   var privacyModal = document.getElementById("privacyModal");
-
   if (privacyBtn) {
     privacyBtn.addEventListener("click", function () { openModal(privacyModal); });
   }
