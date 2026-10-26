@@ -38,12 +38,10 @@
     overflow-x: hidden;
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                 "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     font-size: 17px;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
   }
 
   body::before {
@@ -52,10 +50,8 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background:
-      radial-gradient(1100px 700px at 50% -15%, rgba(96, 150, 235, .16), transparent 62%),
-      radial-gradient(800px 600px at 92% 108%, rgba(70, 105, 175, .12), transparent 60%),
-      radial-gradient(700px 600px at 4% 96%, rgba(50, 85, 150, .10), transparent 60%);
+    background: radial-gradient(1100px 700px at 50% -15%, rgba(96, 150, 235, .16), transparent 62%),
+                radial-gradient(800px 600px at 92% 108%, rgba(70, 105, 175, .12), transparent 60%);
   }
 
   body::after {
@@ -65,9 +61,8 @@
     z-index: 0;
     pointer-events: none;
     opacity: .45;
-    background-image:
-      radial-gradient(circle, rgba(255,255,255,.11) .9px, transparent 1.6px),
-      radial-gradient(circle, rgba(255,255,255,.07) .8px, transparent 1.4px);
+    background-image: radial-gradient(circle, rgba(255,255,255,.11) .9px, transparent 1.6px),
+                      radial-gradient(circle, rgba(255,255,255,.07) .8px, transparent 1.4px);
     background-size: 240px 240px, 150px 150px;
     background-position: 0 0, 80px 110px;
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 88%);
@@ -99,9 +94,7 @@
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: linear-gradient(180deg, rgba(18, 25, 36, .78), rgba(9, 13, 19, .88));
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, .035) inset,
-      0 30px 70px -55px rgba(0, 0, 0, .95);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .035) inset, 0 30px 70px -55px rgba(0, 0, 0, .95);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -116,7 +109,6 @@
     background: linear-gradient(90deg, transparent, rgba(132, 180, 255, .35), transparent);
   }
 
-  /* ===== ОПИСАНИЕ ===== */
   .kicker {
     margin: 0 0 clamp(10px, 1.6vw, 16px);
     display: flex;
@@ -172,7 +164,6 @@
     color: var(--accent);
   }
 
-  /* ===== ФОТО 1 (наверху) ===== */
   .hero-photo {
     position: relative;
     width: 100%;
@@ -194,7 +185,6 @@
     object-position: center 25%;
   }
 
-  /* Общий стиль для подписей на фото */
   .photo-caption {
     position: absolute;
     bottom: 0;
@@ -242,16 +232,13 @@
     white-space: nowrap;
   }
 
-  /* ===== РЕГИСТРАЦИЯ ===== */
   .reg {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: linear-gradient(180deg, rgba(22, 30, 44, .92), rgba(10, 14, 21, .94));
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, .035) inset,
-      0 30px 70px -55px rgba(0, 0, 0, .95);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .035) inset, 0 30px 70px -55px rgba(0, 0, 0, .95);
     position: relative;
     overflow: hidden;
   }
@@ -264,7 +251,6 @@
     z-index: 2;
   }
 
-  /* ДОБАВЛЕНО position: relative, чтобы подпись позиционировалась внутри этого блока */
   .reg-photo {
     position: relative; 
     width: 100%;
@@ -346,7 +332,6 @@
   .btn:active { transform: translateY(1px); }
   .btn:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
 
-  /* ===== ФУТЕР ===== */
   footer {
     position: relative;
     z-index: 1;
@@ -482,26 +467,121 @@
   .modal-body p:last-child { margin-bottom: 0; }
   .modal-body strong { color: var(--text); }
 
-  /* ===== МОДАЛКА С ФОРМОЙ ===== */
-  #formModal .modal-dialog {
-    max-width: 760px;
-    max-height: min(90vh, 1000px);
-    height: min(90vh, 1000px);
+  /* =========================================================
+     СТИЛИ ДЛЯ КАСТОМНОЙ ФОРМЫ
+     ========================================================= */
+  .custom-form {
+    padding: clamp(16px, 3vw, 24px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
   }
 
-  .form-frame-wrap {
-    flex: 1 1 auto;
-    min-height: 0;
-    background: #0a0e15;
-    position: relative;
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
   }
 
-  .form-frame {
-    display: block;
+  .form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: .05em;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="tel"] {
     width: 100%;
-    height: 100%;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--text);
+    font: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus {
+    border-color: var(--accent);
+    background: rgba(132, 180, 255, 0.05);
+  }
+
+  .form-group input::placeholder {
+    color: #5f6a7d;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 16px;
+    padding-top: 4px;
+  }
+
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .radio-label input {
+    accent-color: var(--accent);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+
+  .submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
     border: 0;
-    background: #fff;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #aecbff 0%, #74a8ff 100%);
+    color: #061019;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: filter .15s ease;
+  }
+
+  .submit-btn:hover { filter: brightness(1.07); }
+  .submit-btn:active { transform: translateY(1px); }
+
+  /* Экран успеха */
+  .success-screen {
+    display: none;
+    padding: 40px 24px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .success-screen.is-visible { display: flex; }
+  .success-icon {
+    font-size: 48px;
+    line-height: 1;
+  }
+  .success-screen h3 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--text);
+  }
+  .success-screen p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 30ch;
   }
 
   body.modal-open { overflow: hidden; }
@@ -513,7 +593,6 @@
     <div class="inner">
       <div class="stack">
 
-        <!-- ===== ОПИСАНИЕ ===== -->
         <header class="hero">
           <p class="kicker">
             <span>Борский район</span>
@@ -544,12 +623,10 @@
           </ul>
         </header>
 
-        <!-- ===== РЕГИСТРАЦИЯ ===== -->
         <section class="reg" aria-labelledby="reg-label">
           
           <div class="reg-photo">
             <img src="photo2.jpg" alt="Участники смотрят в окно автобуса">
-            <!-- ДОБАВЛЕНА ПОДПИСЬ -->
             <span class="photo-caption">Трансфер</span>
           </div>
 
@@ -583,19 +660,62 @@
     </div>
   </footer>
 
-  <!-- ===== МОДАЛКА: ФОРМА РЕГИСТРАЦИИ ===== -->
+  <!-- ===== МОДАЛКА: ФОРМА РЕГИСТРАЦИИ (КАСТОМНАЯ) ===== -->
   <div class="modal" id="formModal" role="dialog" aria-modal="true" aria-labelledby="formTitle">
     <div class="modal-backdrop" data-close></div>
     <div class="modal-dialog">
       <div class="modal-head">
-        <h2 class="modal-title" id="formTitle">Регистрация · Заброшки. Зима 2026</h2>
+        <h2 class="modal-title" id="formTitle">Регистрация</h2>
         <button type="button" class="modal-close" aria-label="Закрыть" data-close>&times;</button>
       </div>
-      <div class="form-frame-wrap">
-        <iframe class="form-frame" id="formFrame" title="Форма регистрации" loading="lazy" referrerpolicy="no-referrer"></iframe>
+      
+      <!-- САМА ФОРМА (С РЕАЛЬНЫМИ ID) -->
+      <form 
+        class="custom-form" 
+        id="regForm" 
+        action="https://docs.google.com/forms/d/e/1FAIpQLSdWM_XET4wv5d0aiAanleUDUS8YyCIkNHvLExuOo_Wyl2wszw/formResponse" 
+        method="POST" 
+        target="hidden_iframe" 
+        onsubmit="submitted=true;"
+      >
+        <div class="form-group">
+          <label for="entryName">Фамилия, имя</label>
+          <input type="text" id="entryName" name="entry.889027088" placeholder="Иван Иванов" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="entryPhone">Телефон</label>
+          <input type="tel" id="entryPhone" name="entry.1848259474" placeholder="+7 (999) 000-00-00" required>
+        </div>
+
+        <div class="form-group">
+          <label>Нужен ли трансфер?</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="entry.462479111" value="Да, нужен" required> Да, нужен
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="entry.462479111" value="Нет, я сам(а)"> Нет, я сам(а)
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Отправить заявку</button>
+      </form>
+
+      <!-- ЭКРАН УСПЕХА -->
+      <div class="success-screen" id="successScreen">
+        <div class="success-icon">❄️</div>
+        <h3>Вы зарегистрированы!</h3>
+        <p>Мы свяжемся с вами ближайшее время для подтверждения места.</p>
+        <button type="button" class="btn" data-close style="margin-top: 10px;">Отлично</button>
       </div>
+
     </div>
   </div>
+
+  <!-- Скрытый iframe, чтобы страница не перезагружалась -->
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
   <!-- ===== МОДАЛКА: ПОЛИТИКА ===== -->
   <div class="modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
@@ -609,13 +729,13 @@
         <h3>1. Кто обрабатывает данные</h3>
         <p>Организатор мероприятия «Заброшки. Зима 2026» (далее — Организатор). Контакт для вопросов: <strong>[укажите e-mail или ссылку на ВК/MAX]</strong>.</p>
         <h3>2. Какие данные собираем</h3>
-        <p>Только те, которые участник сам указывает в форме регистрации: имя, телефон, e-mail, город и ответы по трансферу. Специальные и биометрические данные не собираются.</p>
+        <p>Только те, которые участник сам указывает в форме регистрации: имя, телефон и ответы по трансферу. Специальные и биометрические данные не собираются.</p>
         <h3>3. Зачем</h3>
         <p>Исключительно для связи с участником по вопросам мероприятия: подтверждение регистрации, информирование об изменениях, организация трансфера.</p>
         <h3>4. Кому передаём</h3>
         <p>Никому. Данные не передаются третьим лицам, не публикуются и не используются для рассылок, не связанных с мероприятием.</p>
         <h3>5. Где хранятся</h3>
-        <p>В защищённой Google Форме и связанной с ней Google Таблице. Доступ — только у Организатора.</p>
+        <p>В защищённой Google Таблице, связанной с формой регистрации. Доступ — только у Организатора.</p>
         <h3>6. Сколько храним</h3>
         <p>До завершения мероприятия и 3 месяца после — затем удаляем.</p>
         <h3>7. Права участника</h3>
@@ -631,7 +751,6 @@
   "use strict";
 
   var CONFIG = {
-    formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdWM_XET4wv5d0aiAanleUDUS8YyCIkNHvLExuOo_Wyl2wszw/viewform",
     vk:  "https://vk.ru/trail_zabroshki",
     tg:  "#",
     max: "https://web.max.ru/-72418159081581"
@@ -687,27 +806,33 @@
     }
   });
 
-  var formModal  = document.getElementById("formModal");
-  var formBtn    = document.getElementById("regBtn");
-  var formFrame  = document.getElementById("formFrame");
-  var formLoaded = false;
-
-  function toEmbedUrl(url) {
-    if (!url || url === "#") return "";
-    try {
-      var u = new URL(url);
-      u.searchParams.set("embedded", "true");
-      return u.toString();
-    } catch (err) { return url; }
-  }
+  // Логика для кастомной формы
+  var formModal = document.getElementById("formModal");
+  var formBtn = document.getElementById("regBtn");
+  var formElement = document.getElementById("regForm");
+  var successScreen = document.getElementById("successScreen");
+  var submitted = false;
 
   if (formBtn) {
     formBtn.addEventListener("click", function () {
-      if (CONFIG.formUrl && CONFIG.formUrl !== "#" && !formLoaded) {
-        formFrame.src = toEmbedUrl(CONFIG.formUrl);
-        formLoaded = true;
-      }
+      // Сбрасываем форму при открытии
+      formElement.style.display = "flex";
+      successScreen.classList.remove("is-visible");
+      formElement.reset();
+      submitted = false;
+      
       openModal(formModal);
+    });
+  }
+
+  // Отслеживаем отправку формы
+  var hiddenIframe = document.getElementById("hidden_iframe");
+  if (hiddenIframe) {
+    hiddenIframe.addEventListener("load", function () {
+      if (submitted) {
+        formElement.style.display = "none";
+        successScreen.classList.add("is-visible");
+      }
     });
   }
 
