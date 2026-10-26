@@ -215,7 +215,6 @@
       0 30px 70px -55px rgba(0, 0, 0, .95);
     position: relative;
     overflow: hidden;
-    /* Убрали padding отсюда, чтобы фото прилипло к краям */
   }
   .reg::before {
     content: "";
@@ -223,7 +222,7 @@
     inset: 0 0 auto;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(132, 180, 255, .35), transparent);
-    z-index: 2; /* Поверх фото */
+    z-index: 2;
   }
 
   /* ФОТО 2 — внутри блока регистрации, сверху */
@@ -258,13 +257,16 @@
     text-transform: uppercase;
     color: var(--muted);
   }
+  
+  /* ИЗМЕНЕНО: стили дат теперь как у "Зима 2026" */
   .reg-dates {
-    font-size: clamp(18px, 3.6vw, 28px);
-    font-weight: 700;
-    letter-spacing: -.01em;
-    color: var(--accent-strong);
-    font-variant-numeric: tabular-nums;
+    font-size: clamp(12px, 1.9vw, 16px);
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--accent);
     line-height: 1.15;
+    white-space: nowrap;
   }
 
   .reg-note {
@@ -312,20 +314,24 @@
     border-top: 1px solid var(--line-soft);
     background: rgba(7, 9, 13, .72);
   }
+  
   .foot-inner {
     max-width: var(--maxw);
     margin: 0 auto;
-    padding: 22px clamp(16px, 4vw, 28px) 26px;
+    padding: 24px clamp(16px, 4vw, 28px) 28px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
   }
+  
   .foot-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 20px;
+    justify-content: center;
+    gap: 12px 24px;
   }
   .foot-links a,
   .foot-links button {
@@ -348,10 +354,6 @@
     margin: 0;
     font-size: clamp(12px, 1.4vw, 13px);
     color: #5f6a7d;
-  }
-
-  @media (max-width: 520px) {
-    .foot-inner { flex-direction: column; align-items: flex-start; }
   }
 
   /* =========================================================
