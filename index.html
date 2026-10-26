@@ -2,38 +2,673 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Заброшки. Зима 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Заброшки. Зима 2026 — приключенческий трейл 15 км</title>
+<meta name="description" content="Приключенческий трейл на 15 км по Борскому району. Лес, заброшенные здания, исторические места и глубокий снег. Декабрь 2026. 18+. 100 мест.">
+<meta name="theme-color" content="#07090d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Заброшки. Зима 2026">
+<meta property="og:description" content="Приключенческий трейл на 15 км по Борскому району. Декабрь 2026. 18+. 100 мест.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23070a10'/%3E%3Ctext x='50' y='72' font-size='62' text-anchor='middle' fill='%2384b4ff'%3E%E2%9D%84%3C/text%3E%3C/svg%3E">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;line-height:1.6;color:#333}
-.hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center;padding:100px 20px}
-.hero h1{font-size:3em;margin-bottom:20px}
-.hero p{font-size:1.3em;max-width:600px;margin:0 auto}
-.section{max-width:800px;margin:0 auto;padding:60px 20px}
-.section h2{font-size:2em;margin-bottom:30px;color:#667eea}
-.photo{text-align:center;margin:40px 0}
-.photo img{max-width:100%;border-radius:10px}
-.rules{background:#f8f9fa;padding:30px;border-radius:10px}
-.contacts{background:#667eea;color:#fff;padding:30px;border-radius:10px}
-.form-container{max-width:640px;margin:0 auto;overflow:hidden}
+  :root {
+    --bg: #07090d;
+    --line: #1a2130;
+    --line-soft: #141a24;
+    --text: #eef2f8;
+    --muted: #8b96a9;
+    --lead: #c2cbda;
+    --accent: #84b4ff;
+    --accent-strong: #aecbff;
+    --radius: 16px;
+    --maxw: 700px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(1100px 700px at 50% -15%, rgba(96, 150, 235, .16), transparent 62%),
+      radial-gradient(800px 600px at 92% 108%, rgba(70, 105, 175, .12), transparent 60%),
+      radial-gradient(700px 600px at 4% 96%, rgba(50, 85, 150, .10), transparent 60%);
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .45;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,.11) .9px, transparent 1.6px),
+      radial-gradient(circle, rgba(255,255,255,.07) .8px, transparent 1.4px);
+    background-size: 240px 240px, 150px 150px;
+    background-position: 0 0, 80px 110px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 88%);
+    mask-image: linear-gradient(to bottom, #000 0%, transparent 88%);
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+  }
+
+  .inner {
+    margin: auto;
+    width: 100%;
+    max-width: var(--maxw);
+    padding: clamp(40px, 7vh, 80px) clamp(16px, 4vw, 28px);
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 2vw, 20px);
+  }
+
+  .hero,
+  .reg {
+    padding: clamp(18px, 3.4vw, 30px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(18, 25, 36, .78), rgba(9, 13, 19, .88));
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, .035) inset,
+      0 30px 70px -55px rgba(0, 0, 0, .95);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before,
+  .reg::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(132, 180, 255, .35), transparent);
+  }
+
+  /* ===== ОПИСАНИЕ ===== */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .kicker {
+    margin: 0 0 clamp(10px, 1.6vw, 16px);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: clamp(11px, 1.5vw, 12.5px);
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .kicker span { white-space: nowrap; }
+
+  h1 {
+    margin: 0 0 clamp(12px, 1.8vw, 18px);
+    font-size: clamp(32px, 7.2vw, 64px);
+    line-height: .98;
+    letter-spacing: -.03em;
+    font-weight: 700;
+    color: #f4f7fd;
+  }
+  h1 .title-main { display: block; }
+
+  .h1-sub {
+    display: block;
+    margin-top: clamp(8px, 1.2vw, 12px);
+    font-size: clamp(12px, 1.9vw, 16px);
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ===== ФОТО 1 (наверху) ===== */
+  .hero-photo {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    margin: 0 0 clamp(14px, 2vw, 22px);
+    background: #0a0e15;
+    box-shadow: 0 20px 40px -30px rgba(0, 0, 0, .9);
+  }
+
+  .hero-photo img,
+  .photo-band img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+
+  .lead {
+    margin: 0;
+    width: 100%;
+    font-size: clamp(14px, 1.9vw, 17px);
+    color: var(--lead);
+    text-align: justify;
+    text-justify: inter-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .facts {
+    list-style: none;
+    margin: clamp(14px, 2vw, 22px) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(6px, 1vw, 8px);
+  }
+  .facts li {
+    padding: clamp(5px, .9vw, 7px) clamp(10px, 1.5vw, 13px);
+    font-size: clamp(12px, 1.5vw, 13.5px);
+    font-weight: 500;
+    color: #b9c3d4;
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  /* ===== ФОТО 2 (над регистрацией) ===== */
+  .photo-band {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #0a0e15;
+    box-shadow: 0 30px 60px -50px rgba(0, 0, 0, .95);
+  }
+
+  /* ===== РЕГИСТРАЦИЯ ===== */
+  .reg {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.6vw, 14px);
+    background: linear-gradient(180deg, rgba(22, 30, 44, .92), rgba(10, 14, 21, .94));
+  }
+
+  .reg-top { min-width: 0; width: 100%; }
+
+  .reg-line {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: clamp(6px, 1.2vw, 12px);
+  }
+  .reg-label {
+    font-size: clamp(11px, 1.5vw, 12.5px);
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .reg-dates {
+    font-size: clamp(18px, 3.6vw, 28px);
+    font-weight: 700;
+    letter-spacing: -.01em;
+    color: var(--accent-strong);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.15;
+  }
+
+  .reg-note {
+    margin: clamp(6px, 1.2vw, 10px) 0 0;
+    width: 100%;
+    font-size: clamp(13px, 1.8vw, 15.5px);
+    line-height: 1.4;
+    color: var(--muted);
+    text-align: justify;
+    text-justify: inter-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    padding: clamp(12px, 2vw, 16px) clamp(20px, 2.8vw, 28px);
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #aecbff 0%, #74a8ff 100%);
+    color: #061019;
+    font: inherit;
+    font-size: clamp(14px, 1.9vw, 16.5px);
+    font-weight: 700;
+    letter-spacing: .01em;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 12px 30px -14px rgba(116, 168, 255, .6);
+    transition: filter .15s ease, transform .15s ease;
+  }
+  .btn:hover { filter: brightness(1.07); }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
+
+  /* ===== ФУТЕР ===== */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--line-soft);
+    background: rgba(7, 9, 13, .72);
+  }
+  .foot-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 22px clamp(16px, 4vw, 28px) 26px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .foot-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+  .foot-links a,
+  .foot-links button {
+    font-family: inherit;
+    font-size: clamp(13px, 1.6vw, 14px);
+    color: var(--muted);
+    background: none;
+    border: 0;
+    padding: 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color .15s ease;
+  }
+  .foot-links a:hover,
+  .foot-links button:hover { color: var(--text); }
+  .foot-links a:focus-visible,
+  .foot-links button:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
+
+  .copy {
+    margin: 0;
+    font-size: clamp(12px, 1.4vw, 13px);
+    color: #5f6a7d;
+  }
+
+  @media (max-width: 520px) {
+    .foot-inner { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* =========================================================
+     МОДАЛЬНЫЕ ОКНА
+     ========================================================= */
+  .modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 3vw, 32px);
+  }
+  .modal.is-open { display: flex; }
+
+  .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 5, 9, .78);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .modal-dialog {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 620px;
+    max-height: min(84vh, 900px);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, #111823, #0a0e15);
+    box-shadow: 0 40px 100px -40px rgba(0, 0, 0, .95);
+    overflow: hidden;
+  }
+
+  .modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px clamp(18px, 3vw, 24px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .modal-title {
+    margin: 0;
+    font-size: clamp(15px, 2vw, 18px);
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+
+  .modal-close {
+    flex: 0 0 auto;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, .03);
+    color: var(--muted);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .modal-close:hover { color: var(--text); border-color: #2b364a; }
+  .modal-close:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
+
+  .modal-body {
+    padding: clamp(16px, 3vw, 22px) clamp(18px, 3vw, 24px);
+    overflow-y: auto;
+    font-size: clamp(13.5px, 1.7vw, 14.5px);
+    line-height: 1.6;
+    color: var(--lead);
+  }
+  .modal-body h3 {
+    margin: 0 0 6px;
+    font-size: clamp(13.5px, 1.7vw, 14.5px);
+    font-weight: 700;
+    color: var(--text);
+  }
+  .modal-body p { margin: 0 0 14px; }
+  .modal-body p:last-child { margin-bottom: 0; }
+  .modal-body strong { color: var(--text); }
+
+  /* ===== МОДАЛКА С ФОРМОЙ ===== */
+  #formModal .modal-dialog {
+    max-width: 760px;
+    max-height: min(90vh, 1000px);
+    height: min(90vh, 1000px);
+  }
+
+  .form-frame-wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    background: #0a0e15;
+    position: relative;
+  }
+
+  .form-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #fff;
+  }
+
+  body.modal-open { overflow: hidden; }
 </style>
 </head>
 <body>
-<div class="hero">
-<h1>🏃 Заброшки. Зима 2026</h1>
-<p>Беговое мероприятие на свежем воздухе. Присоединяйся!</p>
-</div>
-<div class="section"><div class="photo"><img src="photo.jpg" alt="Заброшки"></div></div>
-<div class="section"><h2>О мероприятии</h2><p>Здесь будет описание.</p></div>
-<div class="section">
-<h2>Регистрация</h2>
-<div class="form-container">
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdWM_XET4wv5d0aiAanleUDUS8YyCIkNHvLExuOo_Wyl2wszw/viewform?embedded=true" width="640" height="718" frameborder="0" marginheight="0" marginwidth="0" style="width:100%;border:none">Загрузка…</iframe>
-</div>
-</div>
-<div class="section"><h2>Правила</h2><div class="rules"><p>Здесь будут правила.</p></div></div>
-<div class="section"><h2>Положение</h2><div class="rules"><p>Здесь будет положение.</p></div></div>
-<div class="section"><h2>Контакты</h2><div class="contacts"><p>📧 info@zabroshki.ru</p><p>📱 +7 (999) 123-45-67</p></div></div>
+
+  <main>
+    <div class="inner">
+      <div class="stack">
+
+        <!-- ===== ОПИСАНИЕ ===== -->
+        <header class="hero">
+          <p class="kicker">
+            <span>Борский район</span>
+            <span>декабрь 2026</span>
+          </p>
+
+          <h1>
+            <span class="title-main">Заброшки</span>
+            <span class="h1-sub">Зима 2026</span>
+          </h1>
+
+          <div class="hero-photo">
+            <img src="photo1.jpg" alt="Участники на фоне заброшенных зданий">
+          </div>
+
+          <p class="lead">
+            Приключенческий трейл на 15 км по Борскому району. Лес, заброшенные здания, исторические места и глубокий снег. Без гонки за временем.
+          </p>
+
+          <ul class="facts">
+            <li>15 км</li>
+            <li>18+</li>
+            <li>100 мест</li>
+          </ul>
+        </header>
+
+        <div class="photo-band">
+          <img src="photo2.jpg" alt="Участники смотрят в окно автобуса">
+        </div>
+
+        <!-- ===== РЕГИСТРАЦИЯ ===== -->
+        <section class="reg" aria-labelledby="reg-label">
+          <div class="reg-top">
+            <p class="reg-line">
+              <span class="reg-label" id="reg-label">Регистрация</span>
+              <span class="reg-dates">9 — 29 ноября 2026</span>
+            </p>
+            <p class="reg-note">Участие бесплатное. Оплачивается только трансфер до места старта и обратно — стоимость уточняется.</p>
+          </div>
+
+          <button type="button" class="btn" id="regBtn">Зарегистрироваться</button>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <nav class="foot-links" aria-label="Ссылки">
+        <a href="#" data-link="vk">ВКонтакте</a>
+        <a href="#" data-link="tg">Telegram</a>
+        <a href="#" data-link="max">MAX</a>
+        <button type="button" id="privacyBtn">Политика обработки данных</button>
+      </nav>
+      <p class="copy">© Заброшки, 2026</p>
+    </div>
+  </footer>
+
+  <!-- ===== МОДАЛКА: ФОРМА РЕГИСТРАЦИИ ===== -->
+  <div class="modal" id="formModal" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog">
+      <div class="modal-head">
+        <h2 class="modal-title" id="formTitle">Регистрация · Заброшки. Зима 2026</h2>
+        <button type="button" class="modal-close" aria-label="Закрыть" data-close>&times;</button>
+      </div>
+      <div class="form-frame-wrap">
+        <iframe class="form-frame" id="formFrame" title="Форма регистрации" loading="lazy" referrerpolicy="no-referrer"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== МОДАЛКА: ПОЛИТИКА ===== -->
+  <div class="modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog">
+      <div class="modal-head">
+        <h2 class="modal-title" id="privacyTitle">Политика обработки персональных данных</h2>
+        <button type="button" class="modal-close" aria-label="Закрыть" data-close>&times;</button>
+      </div>
+      <div class="modal-body">
+        <h3>1. Кто обрабатывает данные</h3>
+        <p>Организатор мероприятия «Заброшки. Зима 2026» (далее — Организатор). Контакт для вопросов: <strong>[укажите e-mail или ссылку на ВК/MAX]</strong>.</p>
+        <h3>2. Какие данные собираем</h3>
+        <p>Только те, которые участник сам указывает в форме регистрации: имя, телефон, e-mail, город и ответы по трансферу. Специальные и биометрические данные не собираются.</p>
+        <h3>3. Зачем</h3>
+        <p>Исключительно для связи с участником по вопросам мероприятия: подтверждение регистрации, информирование об изменениях, организация трансфера.</p>
+        <h3>4. Кому передаём</h3>
+        <p>Никому. Данные не передаются третьим лицам, не публикуются и не используются для рассылок, не связанных с мероприятием.</p>
+        <h3>5. Где хранятся</h3>
+        <p>В защищённой Google Форме и связанной с ней Google Таблице. Доступ — только у Организатора.</p>
+        <h3>6. Сколько храним</h3>
+        <p>До завершения мероприятия и 3 месяца после — затем удаляем.</p>
+        <h3>7. Права участника</h3>
+        <p>Можно в любой момент запросить удаление или исправление своих данных, написав Организатору по контакту из п. 1.</p>
+        <h3>8. Согласие</h3>
+        <p>Отправляя форму регистрации, участник подтверждает, что ознакомлен с этой политикой и согласен на обработку указанных данных на описанных условиях.</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     НАСТРОЙКИ — единственное место, которое нужно править
+     ========================================================= */
+  var CONFIG = {
+    // Ваша Google Форма (без ?embedded=true — добавится автоматически)
+    formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdWM_XET4wv5d0aiAanleUDUS8YyCIkNHvLExuOo_Wyl2wszw/viewform",
+
+    vk:  "#",
+    tg:  "#",
+    max: "#"
+  };
+  /* ========================================================= */
+
+  // Соцссылки в футере
+  document.querySelectorAll("[data-link]").forEach(function (el) {
+    var key = el.getAttribute("data-link");
+    if (CONFIG[key] && CONFIG[key] !== "#") {
+      el.href = CONFIG[key];
+      el.target = "_blank";
+      el.rel = "noopener noreferrer";
+    }
+  });
+
+  document.querySelectorAll('a[href="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); });
+  });
+
+  /* =========================================================
+     ОБЩАЯ ЛОГИКА МОДАЛОК
+     ========================================================= */
+  var openModalEl = null;
+  var lastFocused = null;
+
+  function openModal(modal) {
+    if (!modal) return;
+    lastFocused = document.activeElement;
+    modal.classList.add("is-open");
+    document.body.classList.add("modal-open");
+    var closeBtn = modal.querySelector(".modal-close");
+    if (closeBtn) closeBtn.focus();
+    openModalEl = modal;
+  }
+
+  function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    if (!document.querySelector(".modal.is-open")) {
+      document.body.classList.remove("modal-open");
+    }
+    if (lastFocused && typeof lastFocused.focus === "function") {
+      lastFocused.focus();
+    }
+    openModalEl = null;
+  }
+
+  document.querySelectorAll(".modal").forEach(function (modal) {
+    modal.querySelectorAll("[data-close]").forEach(function (el) {
+      el.addEventListener("click", function () { closeModal(modal); });
+    });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && openModalEl) {
+      closeModal(openModalEl);
+    }
+  });
+
+  /* =========================================================
+     МОДАЛКА С ФОРМОЙ
+     ========================================================= */
+  var formModal  = document.getElementById("formModal");
+  var formBtn    = document.getElementById("regBtn");
+  var formFrame  = document.getElementById("formFrame");
+  var formLoaded = false;
+
+  function toEmbedUrl(url) {
+    if (!url || url === "#") return "";
+    try {
+      var u = new URL(url);
+      u.searchParams.set("embedded", "true");
+      return u.toString();
+    } catch (err) { return url; }
+  }
+
+  if (formBtn) {
+    formBtn.addEventListener("click", function () {
+      if (CONFIG.formUrl && CONFIG.formUrl !== "#" && !formLoaded) {
+        formFrame.src = toEmbedUrl(CONFIG.formUrl);
+        formLoaded = true;
+      }
+      openModal(formModal);
+    });
+  }
+
+  /* =========================================================
+     МОДАЛКА С ПОЛИТИКОЙ
+     ========================================================= */
+  var privacyBtn   = document.getElementById("privacyBtn");
+  var privacyModal = document.getElementById("privacyModal");
+
+  if (privacyBtn) {
+    privacyBtn.addEventListener("click", function () { openModal(privacyModal); });
+  }
+})();
+</script>
+
 </body>
 </html>
