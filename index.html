@@ -140,24 +140,27 @@
     color: #f4f7fd;
   }
   
-  /* Выравнивание по верхнему краю */
   h1 .title-main {
     display: flex;
     align-items: flex-start; 
     flex-wrap: wrap;
-    gap: 0 clamp(8px, 1.5vw, 16px);
+    gap: 0 clamp(8px, 1.2vw, 12px);
   }
 
-  /* Слово ТРЕЙЛ */
+  /* Оформляем ТРЕЙЛ как стильный бейдж/тег в цвете --muted */
   .title-tag {
-    font-size: clamp(12px, 1.9vw, 16px);
-    font-weight: 600;
-    letter-spacing: .22em;
+    display: inline-block;
+    font-size: clamp(10px, 1.4vw, 12px);
+    font-weight: 700;
+    letter-spacing: .2em;
     text-transform: uppercase;
-    color: var(--accent);
-    line-height: 1;
-    /* Сдвиг вниз, чтобы верхушка "ТРЕЙЛ" встала на линию буквы "и" */
-    margin-top: 0.55em; 
+    color: var(--muted); /* Изменено на цвет верхних надписей */
+    border: 1px solid var(--muted); /* Рамка в тот же цвет */
+    border-radius: 6px;
+    padding: 3px 6px 2px 8px;
+    line-height: 1.2;
+    margin-top: 0.7em;
+    background: rgba(255, 255, 255, 0.03); /* Легкий нейтральный фон */
   }
 
   .h1-sub {
@@ -623,21 +626,13 @@
 (function () {
   "use strict";
 
-  /* =========================================================
-     НАСТРОЙКИ — единственное место, которое нужно править
-     ========================================================= */
   var CONFIG = {
-    // Ваша Google Форма (без ?embedded=true — добавится автоматически)
     formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdWM_XET4wv5d0aiAanleUDUS8YyCIkNHvLExuOo_Wyl2wszw/viewform",
-    
-    // Ссылки на соцсети и контакты
     vk:  "https://vk.ru/trail_zabroshki",
-    tg:  "#", // Ссылка на Telegram (пока заглушка)
+    tg:  "#",
     max: "https://web.max.ru/-72418159081581"
   };
-  /* ========================================================= */
 
-  // Автоматическая подстановка ссылок в футер
   document.querySelectorAll("[data-link]").forEach(function (el) {
     var key = el.getAttribute("data-link");
     if (CONFIG[key] && CONFIG[key] !== "#") {
@@ -688,7 +683,6 @@
     }
   });
 
-  // Модалка с формой
   var formModal  = document.getElementById("formModal");
   var formBtn    = document.getElementById("regBtn");
   var formFrame  = document.getElementById("formFrame");
@@ -713,7 +707,6 @@
     });
   }
 
-  // Модалка с политикой
   var privacyBtn   = document.getElementById("privacyBtn");
   var privacyModal = document.getElementById("privacyModal");
 
