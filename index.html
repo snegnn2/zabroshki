@@ -94,8 +94,7 @@
     gap: clamp(12px, 2vw, 20px);
   }
 
-  .hero,
-  .reg {
+  .hero {
     padding: clamp(18px, 3.4vw, 30px);
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -105,9 +104,11 @@
       0 30px 70px -55px rgba(0, 0, 0, .95);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
-  .hero::before,
-  .reg::before {
+  .hero::before {
     content: "";
     position: absolute;
     inset: 0 0 auto;
@@ -116,12 +117,6 @@
   }
 
   /* ===== ОПИСАНИЕ ===== */
-  .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-
   .kicker {
     margin: 0 0 clamp(10px, 1.6vw, 16px);
     display: flex;
@@ -169,7 +164,7 @@
   }
 
   .hero-photo img,
-  .photo-band img {
+  .reg-photo img {
     display: block;
     width: 100%;
     height: 100%;
@@ -208,23 +203,42 @@
     white-space: nowrap;
   }
 
-  /* ===== ФОТО 2 (над регистрацией) ===== */
-  .photo-band {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1px solid var(--line);
-    background: #0a0e15;
-    box-shadow: 0 30px 60px -50px rgba(0, 0, 0, .95);
-  }
-
   /* ===== РЕГИСТРАЦИЯ ===== */
   .reg {
     display: flex;
     flex-direction: column;
-    gap: clamp(10px, 1.6vw, 14px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
     background: linear-gradient(180deg, rgba(22, 30, 44, .92), rgba(10, 14, 21, .94));
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, .035) inset,
+      0 30px 70px -55px rgba(0, 0, 0, .95);
+    position: relative;
+    overflow: hidden;
+    /* Убрали padding отсюда, чтобы фото прилипло к краям */
+  }
+  .reg::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(132, 180, 255, .35), transparent);
+    z-index: 2; /* Поверх фото */
+  }
+
+  /* ФОТО 2 — внутри блока регистрации, сверху */
+  .reg-photo {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0a0e15;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .reg-content {
+    padding: clamp(18px, 3.4vw, 30px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.6vw, 14px);
   }
 
   .reg-top { min-width: 0; width: 100%; }
@@ -285,6 +299,7 @@
     cursor: pointer;
     box-shadow: 0 12px 30px -14px rgba(116, 168, 255, .6);
     transition: filter .15s ease, transform .15s ease;
+    margin-top: 4px;
   }
   .btn:hover { filter: brightness(1.07); }
   .btn:active { transform: translateY(1px); }
@@ -484,21 +499,27 @@
           </ul>
         </header>
 
-        <div class="photo-band">
-          <img src="photo2.jpg" alt="Участники смотрят в окно автобуса">
-        </div>
-
-        <!-- ===== РЕГИСТРАЦИЯ ===== -->
+        <!-- ===== РЕГИСТРАЦИЯ (с фото сверху) ===== -->
         <section class="reg" aria-labelledby="reg-label">
-          <div class="reg-top">
-            <p class="reg-line">
-              <span class="reg-label" id="reg-label">Регистрация</span>
-              <span class="reg-dates">9 — 29 ноября 2026</span>
-            </p>
-            <p class="reg-note">Участие бесплатное. Оплачивается только трансфер до места старта и обратно — стоимость уточняется.</p>
+          
+          <!-- ФОТО 2 -->
+          <div class="reg-photo">
+            <img src="photo2.jpg" alt="Участники смотрят в окно автобуса">
           </div>
 
-          <button type="button" class="btn" id="regBtn">Зарегистрироваться</button>
+          <!-- Текст и кнопка -->
+          <div class="reg-content">
+            <div class="reg-top">
+              <p class="reg-line">
+                <span class="reg-label" id="reg-label">Регистрация</span>
+                <span class="reg-dates">9 — 29 ноября 2026</span>
+              </p>
+              <p class="reg-note">Участие бесплатное. Оплачивается только трансфер до места старта и обратно — стоимость уточняется.</p>
+            </div>
+
+            <button type="button" class="btn" id="regBtn">Зарегистрироваться</button>
+          </div>
+
         </section>
 
       </div>
@@ -564,20 +585,14 @@
 (function () {
   "use strict";
 
-  /* =========================================================
-     НАСТРОЙКИ — единственное место, которое нужно править
-     ========================================================= */
   var CONFIG = {
     // Ваша Google Форма (без ?embedded=true — добавится автоматически)
     formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdWM_XET4wv5d0aiAanleUDUS8YyCIkNHvLExuOo_Wyl2wszw/viewform",
-
     vk:  "#",
     tg:  "#",
     max: "#"
   };
-  /* ========================================================= */
 
-  // Соцссылки в футере
   document.querySelectorAll("[data-link]").forEach(function (el) {
     var key = el.getAttribute("data-link");
     if (CONFIG[key] && CONFIG[key] !== "#") {
@@ -591,9 +606,6 @@
     a.addEventListener("click", function (e) { e.preventDefault(); });
   });
 
-  /* =========================================================
-     ОБЩАЯ ЛОГИКА МОДАЛОК
-     ========================================================= */
   var openModalEl = null;
   var lastFocused = null;
 
@@ -631,9 +643,6 @@
     }
   });
 
-  /* =========================================================
-     МОДАЛКА С ФОРМОЙ
-     ========================================================= */
   var formModal  = document.getElementById("formModal");
   var formBtn    = document.getElementById("regBtn");
   var formFrame  = document.getElementById("formFrame");
@@ -658,9 +667,6 @@
     });
   }
 
-  /* =========================================================
-     МОДАЛКА С ПОЛИТИКОЙ
-     ========================================================= */
   var privacyBtn   = document.getElementById("privacyBtn");
   var privacyModal = document.getElementById("privacyModal");
 
