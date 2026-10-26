@@ -669,7 +669,7 @@
         <button type="button" class="modal-close" aria-label="Закрыть" data-close>&times;</button>
       </div>
       
-      <!-- САМА ФОРМА (С РЕАЛЬНЫМИ ID) -->
+      <!-- САМА ФОРМА (ИСПРАВЛЕНА) -->
       <form 
         class="custom-form" 
         id="regForm" 
@@ -678,6 +678,10 @@
         target="hidden_iframe" 
         onsubmit="submitted=true;"
       >
+        <!-- Скрытые системные поля Google Forms -->
+        <input type="hidden" name="fvv" value="1">
+        <input type="hidden" name="pageHistory" value="0">
+
         <div class="form-group">
           <label for="entryName">Фамилия, имя</label>
           <input type="text" id="entryName" name="entry.889027088" placeholder="Иван Иванов" required>
@@ -692,10 +696,12 @@
           <label>Нужен ли трансфер?</label>
           <div class="radio-group">
             <label class="radio-label">
-              <input type="radio" name="entry.462479111" value="Да, нужен" required> Да, нужен
+              <!-- Значение должно строго совпадать с вариантом в Google -->
+              <input type="radio" name="entry.462479111" value="Да" required> Да, нужен
             </label>
             <label class="radio-label">
-              <input type="radio" name="entry.462479111" value="Нет, я сам(а)"> Нет, я сам(а)
+              <!-- Значение должно строго совпадать с вариантом в Google -->
+              <input type="radio" name="entry.462479111" value="Нет"> Нет, я сам(а)
             </label>
           </div>
         </div>
@@ -815,7 +821,6 @@
 
   if (formBtn) {
     formBtn.addEventListener("click", function () {
-      // Сбрасываем форму при открытии
       formElement.style.display = "flex";
       successScreen.classList.remove("is-visible");
       formElement.reset();
@@ -825,7 +830,6 @@
     });
   }
 
-  // Отслеживаем отправку формы
   var hiddenIframe = document.getElementById("hidden_iframe");
   if (hiddenIframe) {
     hiddenIframe.addEventListener("load", function () {
